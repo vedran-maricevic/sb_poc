@@ -21,3 +21,10 @@ npm install
 npm start
 ```
 It should run on localhost:3000
+
+
+### Online availability
+You can find the app here:
+```
+https://sb-poc.vercel.app/#/
+```
