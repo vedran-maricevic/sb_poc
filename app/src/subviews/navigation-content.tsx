@@ -13,7 +13,7 @@ export class NavigationContent extends React.Component<any, any> {
             dangerouslySetInnerHTML={{ __html: "&#8249" }}
           />
         )}
-        <Toolbar>POC: If you dont see upload box, then just reload the app. we work on Trial mode in here.</Toolbar>
+        <Toolbar>POC: If you dont see upload box, then just reload the app. We work on Trial mode in here.</Toolbar>
       </div>
     );
   }
