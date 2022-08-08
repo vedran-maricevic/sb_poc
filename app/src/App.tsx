@@ -213,7 +213,7 @@ export default class App extends React.Component<any, any> {
       }
       // SINGLE CALL FOR ALL SUPPORTED IMAGES...
     } else if (feature.id === RoutePath.BarcodeOnAllImages){
-      console.log('Currently detecting PNG, JPG and PDF')
+      console.log('Currently detecting PNG, JPG, BMP and PDF')
       let detection: any = '';
       const result = await ImageUtils.pick(ImageUtils.MIME_GENERIC_IMAGES, document.getElementById(feature.id) as any, true);
       if (result.fileType === 'application/pdf') {
