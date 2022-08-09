@@ -1,6 +1,11 @@
 # Proof of Concept.
 This proof of concepts aim, is to show it is possible to have Datamatrix. code recognition moved to the
 front end side. Currently, we use backend for this purpose. 
+This PoC is 95% boilerplate from the original Scanbot company demo. 
+It consist of the following:
+- Boilerplate (React setup) (We already do it)
+- Instantiating the scanbot for usage (We already do it)
+- Detecting the Datamatrix Code (App.tsx and image-utils.ts) - PoC code, only in those two files.
 
 ### Origins
 This PoC is based on ScanBot demo project, where they cover all features they offer. However, we stripped most of it.
@@ -9,7 +14,9 @@ Kept exactly what we need, and implemented the missing things.
 **App.tsx** contains the actual implementation. From line 180, the actual implementation starts.
 We have separate implementations for PNG, JPG and PDF, so it is easier to follow the implementation. 
 And then we have one method that supports all formats (Line 197),
-this code should be called with button upload
+this code should be called with button upload.
+
+**image-utils** contains pdf transformation code.
 
 ### Test Images
 We have all possible formats, and you can find them in mocks/Files_for_poc.
@@ -19,6 +26,11 @@ will it be recognized. So far it works.
 ### sb_poc how to start the project
 In this project, we tried to capture only those things that we need.
 Expose them on line, so the Apps can be tested. Also, aim is to make it KISS.
+
+### Extra Libraries
+THis project uses two additional libraries (both used in image-utils), and they are:
+- "react-pdf": "5.3.0",
+- const pdfWorkerUrl = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfVersion}/pdf.worker.js`;
 
 ### How to run the example apps?
 The React example app relies on the `npm` [package](https://www.npmjs.com/package/scanbot-web-sdk)

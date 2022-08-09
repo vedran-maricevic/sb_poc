@@ -168,7 +168,7 @@ export default class App extends React.Component<any, any> {
     const valid = await ScanbotSdkService.instance.isLicenseValid();
     if (!valid) {
       console.error(
-        "License invalid or expired. ScanbotSDK features not available"
+        "License invalid or expired. Refresh page for abnnother 60 seconds of trial."
       );
       return;
     }
@@ -202,7 +202,8 @@ export default class App extends React.Component<any, any> {
       if (result.fileType === 'application/pdf') {
         const images = await ImageUtils.pdfToImage(result.data);
         console.log(`Detected the following file format:  ${result.fileType}`);
-        for (let i = 0; i < images.length; i++) {
+        debugger
+        for (let i = 0; i < images.length; i++) { // Images are actual PDF pages
             detection = await ScanbotSdkService.instance.sdk?.detectBarcodes(
               images[i]
           )
@@ -242,7 +243,7 @@ export default class App extends React.Component<any, any> {
     } else if (feature.id === RoutePath.BarcodeOnPdf) {
       const pdf = await ImageUtils.pick(ImageUtils.MIME_TYPE_PDF, document.getElementById(feature.id) as any, true);
       const images = await ImageUtils.pdfToImage(pdf.data);
-      for (let i = 0; i < images.length; i++) {
+      for (let i = 0; i < images.length; i++) { // Images are actual PDF pages
         console.log(`Detect barcodes on page ${i}`);
         const detection = await ScanbotSdkService.instance.sdk?.detectBarcodes(
           images[i]
