@@ -11,6 +11,11 @@ We have separate implementations for PNG, JPG and PDF, so it is easier to follow
 And then we have one method that supports all formats (Line 197),
 this code should be called with button upload
 
+### Test Images
+We have all possible formats, and you can find them in mocks/Files_for_poc.
+Also, we have a folder distorted, where we applied intantional distortions to image, in order to see,
+will it be recognized. So far it works.
+
 ### sb_poc start the project
 In this project, we tried to capture only those things that we need.
 Expose them on line, so the Apps can be tested. Also, aim is to make it KISS.
