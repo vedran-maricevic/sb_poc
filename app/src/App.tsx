@@ -9,8 +9,6 @@ import FeatureList from "./subviews/feature-list";
 import { BottomBar } from "./subviews/bottom-bar";
 
 import ImageResultsPage from "./pages/image-results-page";
-import ImageDetailPage from "./pages/image-detail-page";
-import CroppingPage from "./pages/cropping-page";
 
 import Pages from "./model/pages";
 import { ScanbotSdkService } from "./service/scanbot-sdk-service";
@@ -137,21 +135,6 @@ export default class App extends React.Component<any, any> {
       );
     }
 
-    if (route === RoutePath.CroppingView) {
-      if (!Pages.instance.hasActiveItem()) {
-        RoutingService.instance.reset();
-        return null;
-      }
-      return <CroppingPage sdk={this.state.sdk} />;
-    }
-
-    if (route === RoutePath.ImageDetails) {
-      if (!Pages.instance.hasActiveItem()) {
-        RoutingService.instance.reset();
-        return null;
-      }
-      return <ImageDetailPage image={this.state.activeImage} />;
-    }
     if (route === RoutePath.ImageResults) {
       return (
         <ImageResultsPage
@@ -180,7 +163,7 @@ export default class App extends React.Component<any, any> {
   printDataMatrixCodeToConsole (fileFormat: string, recognitionData: any) {
     console.log(`The scan result from ${fileFormat}:  ${JSON.stringify(recognitionData)}`);
   }
-
+// WHole logic is here in this method
   async onFeatureClick(feature: any) {
     const valid = await ScanbotSdkService.instance.isLicenseValid();
     if (!valid) {
@@ -195,14 +178,13 @@ export default class App extends React.Component<any, any> {
       const color = info?.status === "Trial" ? "success" : "error";
       this.setState({ alert: { color: color, text: JSON.stringify(info) } });
     } else if (feature.id === RoutePath.BarcodeOnPng){
-      // PNG CALL USED FOR POC
+      // PNG CALL
       const result = await ImageUtils.pick(ImageUtils.MIME_TYPE_PNG, document.getElementById(feature.id) as any, true);
       console.log('POC: Calling the PNG Detection Separately ')
       const detection = await ScanbotSdkService.instance.sdk?.detectBarcodes(
           result.data
       );
       if (detection !== undefined) {
-        //TODO: Move to separate function
         this.printDataMatrixCodeToConsole('PNG', detection.barcodes )
         this.setState({
           alert: {
@@ -216,6 +198,7 @@ export default class App extends React.Component<any, any> {
       console.log('Currently detecting PNG, JPG, BMP and PDF')
       let detection: any = '';
       const result = await ImageUtils.pick(ImageUtils.MIME_GENERIC_IMAGES, document.getElementById(feature.id) as any, true);
+      // Is it an pdf?
       if (result.fileType === 'application/pdf') {
         const images = await ImageUtils.pdfToImage(result.data);
         console.log(`Detected the following file format:  ${result.fileType}`);
@@ -225,6 +208,7 @@ export default class App extends React.Component<any, any> {
           )
         }
       } else {
+        // Then it is an image, scan it.
           detection = await ScanbotSdkService.instance.sdk?.detectBarcodes(
             result.data
         );
@@ -240,7 +224,7 @@ export default class App extends React.Component<any, any> {
         });
       }
     }
-
+    // PNG CALL
    else if (feature.id === RoutePath.BarcodeOnJpeg) {
       const result = await ImageUtils.pick(ImageUtils.MIME_TYPE_JPEG, document.getElementById(feature.id) as any, true);
       const detection = await ScanbotSdkService.instance.sdk?.detectBarcodes(
@@ -254,7 +238,7 @@ export default class App extends React.Component<any, any> {
             text: this.formatBarcodes(detection.barcodes),
           },
         });
-      }
+      }  // PDF SINGLE CALL
     } else if (feature.id === RoutePath.BarcodeOnPdf) {
       const pdf = await ImageUtils.pick(ImageUtils.MIME_TYPE_PDF, document.getElementById(feature.id) as any, true);
       const images = await ImageUtils.pdfToImage(pdf.data);

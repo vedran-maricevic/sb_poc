@@ -3,8 +3,13 @@ This proof of concepts aim, is to show it is possible to have Datamatrix. code r
 front end side. Currently, we use backend for this purpose. 
 
 ### Origins
-This PoC is based on ScanBot demo project, where they cover all bangs and whistles. However, we stripped all of that.
+This PoC is based on ScanBot demo project, where they cover all features they offer. However, we stripped most of it.
 Kept exactly what we need, and implemented the missing things.
+
+**App.tsx** contains the actual implementation. From line 180, the actual implementation starts.
+We have separate implementations for PNG, JPG and PDF, so it is easier to follow the implementation. 
+And then we have one method that supports all formats (Line 197),
+this code should be called with button upload
 
 ### sb_poc start the project
 In this project, we tried to capture only those things that we need.
@@ -22,6 +27,10 @@ npm start
 ```
 It should run on localhost:3000
 
+to shut down the app:
+```
+npm eject
+```
 
 ### Online availability
 You can find the app here:
