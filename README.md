@@ -1,6 +1,7 @@
 # Proof of Concept.
-This proof of concepts aim, is to show it is possible to have Datamatrix. To move code recognition to the
-front end side. Currently, we use backend for this purpose. 
+The purpose of this concept, is to determine if it is possible to have Datamatrix extraction on the frontend side, instead the 
+backend that we use for this purpose.
+
 This PoC is 95% boilerplate from the original Scanbot company demo. 
 It consist of the following:
 - Boilerplate (React setup) (We already do it)
