@@ -16,7 +16,7 @@ We have all possible formats, and you can find them in mocks/Files_for_poc.
 Also, we have a folder distorted, where we applied intantional distortions to image, in order to see,
 will it be recognized. So far it works.
 
-### sb_poc start the project
+### sb_poc how to start the project
 In this project, we tried to capture only those things that we need.
 Expose them on line, so the Apps can be tested. Also, aim is to make it KISS.
 
@@ -36,6 +36,12 @@ to shut down the app:
 ```
 npm eject
 ```
+
+### Where is this project hosted
+https://vercel.com/. Any commit to the main branch, will be deployed to production (https://sb-poc.vercel.app/#/).
+The reason why this built in a private account is to gain speed. 
+Private account works smoothly with Vercel. And this is after all an PoC.
+
 
 ### Online availability
 You can find the app here:
