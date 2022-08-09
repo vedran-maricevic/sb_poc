@@ -7,15 +7,14 @@ It consist of the following:
 - Instantiating the scanbot for usage (We already do it)
 - Detecting the Datamatrix Code (App.tsx and image-utils.ts) - PoC code, only in those two files.
 
-### Origins
-This PoC is based on ScanBot demo project, where they cover all features they offer. However, we stripped most of it.
-Kept exactly what we need, and implemented the missing things.
-
 ### Some notes about the code
 **App.tsx** contains the actual implementation. From line 180, the actual implementation starts.
 We have separate implementations for PNG, JPG and PDF, so it is easier to follow the implementation. 
 And then we have one method that supports all formats (Line 197),
 this code should be called with button upload.
+
+### Origins
+This PoC is based on ScanBot demo project, where they cover all features they offer.
 
 **image-utils** contains pdf transformation code.
 
